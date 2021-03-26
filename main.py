@@ -50,13 +50,17 @@ def random_search():
     return best_weights, max_reward, i
 
 
+def q5():
+    num_episodes = [i for w, r, i in [random_search() for x in range(1000)]]
+    avg = sum(num_episodes) / len(num_episodes)
+    print('avg', avg)
+    plt.hist(num_episodes)
+    plt.show()
 q3()
+
 q4()
 
-num_episodes = [i for w, r, i in [random_search() for x in range(1000)]]
-avg = sum(num_episodes) / len(num_episodes)
-print('avg', avg)
-plt.hist(num_episodes)
-plt.show()
+
+q5()
 
 env.close()
