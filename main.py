@@ -1,4 +1,5 @@
 import gym
+import matplotlib.pyplot as plt
 
 import numpy
 
@@ -51,5 +52,11 @@ def random_search():
 
 q3()
 q4()
+
+num_episodes = [i for w, r, i in [random_search() for x in range(1000)]]
+avg = sum(num_episodes) / len(num_episodes)
+print('avg', avg)
+plt.hist(num_episodes)
+plt.show()
 
 env.close()
