@@ -25,8 +25,31 @@ def do_episode(weights):
     return total_reward
 
 
-# q
-weights = numpy.random.uniform(low=-1., high=1., size=4)
-print(do_episode(weights))
+def q3():
+    weights = numpy.random.uniform(low=-1., high=1., size=4)
+    print(do_episode(weights))
+
+
+def q4():
+    best_weights, max_reward, i = random_search()
+    print('best weights', best_weights)
+    print('reward', max_reward)
+
+
+def random_search():
+    all_weights = [numpy.random.uniform(low=-1., high=1., size=4) for i in range(10000)]
+    max_reward = 0.
+    best_weights = None
+    for i, w in enumerate(all_weights):
+        reward = do_episode(w)
+        if reward > max_reward:
+            best_weights, max_reward = w, reward
+        if reward >= 200.:
+            break
+    return best_weights, max_reward, i
+
+
+q3()
+q4()
 
 env.close()
