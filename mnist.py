@@ -107,7 +107,7 @@ for curBatchSize in range(50, 250, 50):
         batch_size=curBatchSize,
         shuffle=False)
     for i in range(-5, 5, 1):
-        curLearningRate = learning_rate + i * 10e-4
+        curLearningRate = learning_rate + i * 1e-4
         train(dataloder=train_loader_sec2, learningRate=curLearningRate)
         curAcuracy = test(dataloder=test_loader_sec2)
         if curAcuracy > maxAcuracy:
@@ -115,6 +115,7 @@ for curBatchSize in range(50, 250, 50):
             maxBatchSize = curBatchSize
             maxLearningRate = curLearningRate
 
+print(f"The best acuracy is {maxAcuracy}, the best batch size is {maxBatchSize}, the best learning rate is {maxLearningRate}")
 # The best acuracy is 92.15, the best batch size is 200, the best learning rate is 0.004 
 train_loader_sec2 = torch.utils.data.DataLoader(dataset=train_dataset,
     batch_size=maxBatchSize,
